@@ -32,8 +32,6 @@ get_python_cmd() {
 
 PYTHON_CMD="$(get_python_cmd)"
 
-echo $PYTHON_CMD
-
 cd ${TEST_DIR}
 
 if ! ${PYTHON_CMD} -m unittest discover; then
