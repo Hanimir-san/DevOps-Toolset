@@ -6,9 +6,16 @@
 # it wants to stop the commit.
 #
 # This example runs a set of unittests in Python and ensures all
-# tests are successful before a commit can be made.
+# tests are successful before a commit can be made. When trying to
+# find tests the working directory in a pre-commit hook is always
+# the project root.
 #
 # To enable the hook, slap it in your project root under .git/hooks
+
+TEXT_RESET='\x1b[0m'
+TEXT_RED='\x1b[31m'
+
+TEST_DIR='samples/tests'
 
 get_python_cmd() {
     if python --version 1>/dev/null; then
@@ -25,9 +32,9 @@ get_python_cmd() {
 
 PYTHON_CMD="$(get_python_cmd)"
 
-cd samples/tests
+cd ${TEST_DIR}
 
 if ! ${PYTHON_CMD} -m unittest discover; then
-    printf "Unittests have failed! Commit is not allowed!\n"
+    printf "${TEXT_RED}Unittests have failed! Commit is not allowed!${TEXT_RESET}\n"
     exit 1
 fi
