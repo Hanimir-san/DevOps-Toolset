@@ -18,11 +18,11 @@ TEXT_RED='\x1b[31m'
 TEST_DIR='samples/tests'
 
 get_python_cmd() {
-    if python --version 1>/dev/null; then
+    if python --version 1>/dev/null 2>&1; then
         printf "python"
-    elif python3 --version 1>/dev/null; then
+    elif python3 --version 1>/dev/null 2>&1; then
         printf "python3"
-    elif py --version 1>/dev/null; then
+    elif py --version 1>/dev/null 2>&1; then
         printf "py"
     else
         printf "Could not find a valid Python interpreter. Please make sure Python is installed!\n"
@@ -31,6 +31,8 @@ get_python_cmd() {
 }
 
 PYTHON_CMD="$(get_python_cmd)"
+
+echo $PYTHON_CMD
 
 cd ${TEST_DIR}
 
