@@ -7,18 +7,11 @@
 # message file.  If the hook fails with a non-zero status,
 # the commit is aborted.
 #
-# To enable this hook, rename this file to "prepare-commit-msg".
-
-# This hook includes three examples. The first one removes the
-# "# Please enter the commit message..." help message.
-#
-# The second includes the output of "git diff --name-status -r"
-# into the message, just before the "git status" output.  It is
-# commented because it doesn't cope with --amend or with squashed
-# commits.
-#
-# The third example adds a Signed-off-by line to the message, that can
-# still be edited.  This is rarely a good idea.
+# This hook automatically prepends the names of the files that
+# were changed in the commit to the commit message. This can be
+# useful for plugins that forward pushes to github repositories
+# to team leaders automatically so they may tell at a glance
+# which files have been edited.
 
 COMMIT_MSG_FILE=$1
 COMMIT_SOURCE=$2
